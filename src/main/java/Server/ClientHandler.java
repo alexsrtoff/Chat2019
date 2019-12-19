@@ -33,10 +33,11 @@ public class ClientHandler {
                             String[] tockens = msg.split(" ");
                             if(DBService.checkClient(tockens[1])){
                                 sendMsg("Ник занят попробуйте друдой");
-
+                                DBService.logger(tockens[1], "register faild");
                             }else {
                                 DBService.regNewClient(tockens[1], tockens[2], tockens[3]);
                                 sendMsg("/regok");
+                                DBService.logger(tockens[1], "register");
                             }
                         }
                         if (msg.startsWith("/auth")) {
@@ -44,11 +45,15 @@ public class ClientHandler {
                             String newNick = DBService.getNickByLoginAndPass(tockens[1], tockens[2]);
                             if(serv.checkNick(newNick)){
                                 sendMsg("Логин/ник занят. Введите другой логин");
+                                DBService.logger(nick, "logg faild");
+
                             }
                             else if(newNick != null){
                                 sendMsg("/authok");
                                 nick = newNick;
                                 serv.subscribe(ClientHandler.this);
+                                DBService.logger(nick, "logged in");
+
                                 break;
                             }else{
                                 sendMsg("Неверный логин/пароль");
@@ -60,7 +65,7 @@ public class ClientHandler {
                         String msg = in.readUTF();
                         if (msg.equals("/end")) {
                             out.writeUTF("/serverClosed");
-
+                            DBService.logger(nick, "logged out");
                             break;
                         }
                         if(msg.startsWith("/w")) {
@@ -70,14 +75,13 @@ public class ClientHandler {
                             if(DBService.getIdByNickname(tockens[1]) != null){
                                 DBService.addToBlackList(nick, tockens[1]);
                                 sendMsg("Пользователь: " + tockens[1] + " в черном списке.");
+                                String log = "add " + tockens[1] + " to blacklist";
+                                DBService.logger(nick, log);
                                 serv.broadcastClientsList();
                             }else sendMsg("Вы хотите добавить в черный список несуществующего пользователя");
                         }else serv.broadcastMsg(nick + " " +nick + ": " + msg);
 
                     }
-
-
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {

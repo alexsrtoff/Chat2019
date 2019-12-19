@@ -130,10 +130,18 @@ public class DBService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
-
-
-
+    public static void logger(String nick, String action) {
+        try {
+            String query = "INSERT INTO logger (user_nickname ,action , action_date) VALUES (?, ?, ?);";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, nick);
+            ps.setString(2, action);
+            ps.setString(3, new Date().toString());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
