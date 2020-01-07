@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Reader {
+public class Reader_Task3 {
 
     static ArrayList<Character> t = new ArrayList<>();
     static int page;

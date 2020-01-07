@@ -42,40 +42,25 @@ public class MainClass {
 //        System.out.println();
 //        in.close();
 //
-
-    /* Задание 3*/
-
+        /*Задание 5*/
 
 
-        try (RandomAccessFile raf = new RandomAccessFile("Files/task3_2.txt", "r")) {
-            raf.seek(0);
-            char text1 = (char)raf.read();
-            System.out.println(text1);
-//            byte[] data1 = new byte[4];
-////            raf.read(data1, 0, data1.length);
-////            String text = new String(data1, 0, data1.length, "UTF-8");
-////            System.out.println(text);
-//
-////            raf.seek(0);
-////            int of = 0;
-//            char[] c = new char[1800];
-//                byte[] v = new byte[1800];
-//            for (int i = 0; i < 1800 ; i++) {
-////                byte[] v = new byte[1800];
-//                raf.seek(i);
-////                char text1 = (char)raf.read();
-//                c[i] = (char)raf.read();
-////                v[i] = (byte) raf.read();
-//                System.out.print(new String(v, 0, v.length, "UTF-8"));
-//            }
-//            System.out.print(new String(v, 0, 100, "UTF-8"));
+        StringBuilder sb = new StringBuilder();
+        try (InputStreamReader in = new InputStreamReader(new FileInputStream("Files/task5.txt"), "UTF-8")) {
+            int x;
+            while ((x = in.read()) != -1) {
+                sb.append((char) x);
+            }
+            String str = String.valueOf(sb);
+            String[] tokens = str.split(" ");
 
+            System.out.println(tokens.length);
+            for (int i = tokens.length - 1; i >= 0 ; i--) {
+                System.out.println(tokens[i]);
+            }
 
-//            System.out.println(new String(data1, 0, 1020, "UTF-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-
     }
-
-
 }
