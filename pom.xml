@@ -8,9 +8,15 @@
     <artifactId>Chat</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <modules>
-        <module>Lessons</module>
-    </modules>
+    <properties>
+        <project.java.version>1.8</project.java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+<!--    <modules>-->
+<!--        <module>Lessons</module>-->
+<!--    </modules>-->
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
@@ -21,7 +27,6 @@
         </dependency>
 
     </dependencies>
-
 
 
     <build>
