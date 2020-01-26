@@ -2,6 +2,8 @@ package Server;
 
 import java.sql.*;
 import java.util.Date;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class DBService {
     private static Connection connection;
