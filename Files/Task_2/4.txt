@@ -1,0 +1,1 @@
+Enumeration<InputStream> e = Collections.enumeration(al);
